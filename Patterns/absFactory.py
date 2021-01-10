@@ -98,18 +98,3 @@ class MenuSolaris(InterfaceMenu):
 a = FactoryOSX()
 print(a.create_product_a().product_a_mode())
 
-# def client_code(factory: Factory) -> None:
-#     product_a = factory.create_window()
-#     product_b = factory.create_menu()
-#     print(f"{product_b.create_menu()}")
-#     print(f"{product_a.create_window()}", end="")
-#
-# if __name__ == "__main__":
-#
-#     print("Client: Testing client code with the first factory type:")
-#     client_code(FactoryOSX())
-#
-#     print("\n")
-#
-#     print("Client: Testing the same client code with the second factory type:")
-#     client_code(FactorySolaris())
