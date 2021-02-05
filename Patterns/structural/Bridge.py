@@ -17,17 +17,7 @@ class PetrolFuel(Fuel):
         return 'Petrol fuel is faster then diesel'
 
 
-class Vehicle(ABC):
-    @abstractmethod
-    def model(self):
-        pass
-
-    @abstractmethod
-    def max_speed(self):
-        pass
-
-
-class Car(Vehicle):
+class Car:
     def __init__(self, rolling, digit, fuel):
         self.rolling = rolling
         self.fuel = fuel
@@ -41,12 +31,7 @@ class Car(Vehicle):
         return f'Speed = {speed} km/h. {self.fuel.get_fuel()}'
 
 
-class Moto(Vehicle):
-    def __init__(self, rolling, digit, fuel):
-        self.rolling = rolling
-        self.fuel = fuel
-        self.okt_digit = digit
-
+class Moto(Car):
     def model(self):
         return "Model Suzuki"
 
@@ -59,7 +44,7 @@ car = Car(1500, 4, DieselFuel())
 print(car.model())
 print(car.max_speed())
 
-print('\n')
+print('')
 
 moto = Moto(3000, 2, PetrolFuel())
 print(moto.model())

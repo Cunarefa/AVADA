@@ -17,11 +17,12 @@ class Adapter(String):
         return str(self.adaptee.integers())
 
 
-def some(obj):
+def client_code(obj):
     print("Some special type: " + obj.string())
 
 
 if __name__ == '__main__':
-    i = Integers()
-    a = Adapter(i)
-    some(a)
+    integer = Integers()
+    adapter = Adapter(integer)
+
+    client_code(adapter)
