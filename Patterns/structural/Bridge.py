@@ -18,10 +18,10 @@ class PetrolFuel(Fuel):
 
 
 class Car:
-    def __init__(self, rolling, digit, fuel):
+    def __init__(self, rolling, okt_digit, fuel: Fuel):
         self.rolling = rolling
+        self.okt_digit = okt_digit
         self.fuel = fuel
-        self.okt_digit = digit
 
     def model(self):
         return f"Model BMW"
