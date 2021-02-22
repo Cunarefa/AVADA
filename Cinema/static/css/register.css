@@ -1,0 +1,106 @@
+.errorlist{
+    color: red;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    background: url(../photos/fon2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+h1, h2, h3, h4, h5, h6, a {
+  margin:0; padding:0;
+}
+.avtorizovasya {
+  margin:0 auto;
+  max-width:500px;
+}
+.avto-vaslas {
+  color:#fff;
+  text-align:center;
+  font-size:300%;
+}
+
+}
+.vasuged-kupalas {
+  border:.5px solid #fff;
+  background:#4facff;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.vasuged-kupalas h3 {
+  text-align: left;
+  margin-left: 40px;
+  color: #FFF;
+  text-shadow: 0 1px 0 #4c4646;
+}
+.vasuged-kupalas {
+  box-sizing:border-box;
+  padding-top:15px;
+  padding-bottom:10%;
+  margin:5% auto;
+  text-align:center;
+}
+.avtorizovasya input[type="text"],
+.avtorizovasya input[type="password"],
+.avtorizovasya input[type="email"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+
+.vasuged-kupalas input,
+.vasuged-kupalas button {
+  width:100px;
+  background:#fff;
+  border:1px solid #f2f2f2;
+  border-radius:20px;
+  color: slategrey;
+  font-family: 'Ubuntu', sans-serif;
+  cursor:pointer;
+}
+
+.vasuged-kupalas button{
+    width:150px;
+}
+
+.naugs-palasug{
+  color:#f2f2f2;
+  margin-left:-70%;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.vsamus-pugasd {
+  color:#E86850;
+  margin:20px 0px 20px -57%;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.gasces-nomlaged {
+  color:#f2f2f2;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+/*Media Querie*/
+@media only screen and (min-width : 150px) and (max-width : 530px){
+  .vasuged-kupalas h3 {
+  text-align:center;
+  margin:0;
+  }
+  .naugs-palasug, .vsamus-pugasd {
+  margin:10px 0;
+  }
+  .aloplus-mudesa {
+  margin-bottom:10px;
+  }
+}

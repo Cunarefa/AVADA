@@ -1,0 +1,65 @@
+.errorlist{
+    color: red;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    background: url(../photos/fon2.jpg) no-repeat center center fixed;
+    background-size: cover;
+    margin: 0px;
+}
+
+.container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.menu{
+    float: right;
+    border-spacing: 0;
+    margin-top: 5px !important;
+}
+.table{
+    margin-bottom:2rem;
+}
+
+.table th, .table td{
+    padding: 0;
+    border: none;
+}
+
+tbody, td, tfoot, th, thead, tr{
+    border: none;
+}
+
+table.menu tr td a, table.menu tr td input {
+    display: block;
+    padding: 0 20px;
+    padding-top: 4px;
+    padding-bottom: 0;
+    height: 22px;
+    background: #3f3f3f;
+    color: #FFF;
+    -webkit-border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-decoration: none;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    text-shadow: 1px 1px #000;
+}

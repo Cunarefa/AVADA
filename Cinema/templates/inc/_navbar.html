@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'main' %}">
+            <img src="static/photos/logo.png" width="200" height="60">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <strong><a class="nav-link" href="{% url 'main' %}">Home</a></strong>
+                </li>
+                <li class="nav-item">
+                    <strong><a class="nav-link" href="#">Add film</a></strong>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Contacts
+                    </a>
+                    <ul class="dropdown-menu phone" aria-labelledby="navbarDropdown">
+                        <li><p>(096)777-77-77</p></li>
+                        <li><p>(044)987-65-43</p></li>
+                    </ul>
+                </li>
+            </ul>
+            <strong class="navbar-text nav-link">
+                {% if request.user.is_authenticated %}
+
+                Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}">Выход</a>
+                {% else %}
+
+                <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Вход</a>
+                {% endif %}
+            </strong>
+        </div>
+    </div>
+</nav>

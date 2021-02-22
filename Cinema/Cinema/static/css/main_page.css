@@ -1,0 +1,93 @@
+
+.navbar-dark .navbar-text a, .navbar-dark .navbar-text a:focus, .navbar-dark .navbar-text a:hover {
+    color: #F0FFFF;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #FFF;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.55);
+    border-color: rgba(255,255,255,.55);
+}
+
+.phone{
+    text-align: center;
+}
+
+.carousel-inner{
+    max-height: 500px;
+    border: none;
+    background-color: #000;
+}
+
+/* Date +++++++++++++++++ Date */
+.date{
+    background-color: #FFFAFA;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.date h3{
+    margin:0;
+}
+
+/* Movies list +++++++++++++++++++++++ */
+
+.row{
+    --bs-gutter-x: 0;
+    background-color: #F5F5F5;
+}
+
+.col-3{
+    padding: 0 4px;
+}
+
+.card{
+    background-color: transparent;
+    border: none;
+    max-height: 440px;
+    height: 100%;
+}
+
+.card img{
+    max-width: 290px;
+    height: 370px;
+    margin-top: 8px;
+}
+
+.card-footer{
+    background-color: #F5F5F5;
+    padding-top: 8px;
+    padding: .5rem 0.2rem;
+}
+
+.text-muted{
+    color: #000!important;
+    text-decoration: underline;
+
+}
+
+.card-footer text-muted a{
+    color: #000;
+}
+
+.button {
+    display: block;
+    margin: 5px 0 15px;
+}
+
+.btn-primary:hover{
+    background-color: #3CB371;
+}
+
+.btn-primary{
+    background-color: #32CD32;
+    border: none;
+}
+[type=button]:not(:disabled){
+    margin-bottom: 10px
+}
+

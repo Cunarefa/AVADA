@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/movie_detail.css' %}">
+{% endblock %}
+
+
+{% block title %}
+{{ movie_item.title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+
+    <section class="trailer">
+        {% video movie_item.trailer as my_video %}
+        <iframe style="width:100%; height:500px;" src="{{ my_video.url }}"></iframe>
+        {% endvideo %}
+    </section>
+
+    <div class="card-body">
+        <div class="media">
+            <img src="{{ movie_item.poster.url }}" class="mr-3">
+
+        </div>
+        <div class="media-body">
+            <h1 class="card-title">{{ movie_item.title }}</h1>
+            <p class="card-text">{{ movie_item.description }}</p>
+            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Купить билет</a>
+        </div>
+    </div>
+
+    <div class="characteristics">
+        <ul class="list_items">
+            <li>
+                <p class="left_item">Год</p>
+                <p class="right_item">{{ movie_item.year }}</p>
+            </li>
+            <li>
+                <p class="left_item">Возраст:</p>
+                <p class="right_item">{{ movie_item.age }}</p>
+            </li>
+            <li>
+                <p class="left_item">Жанр:</p>
+                <p class="genre right_item">{{ movie_item.genre.all|join:", " }}</p>
+
+            </li>
+            <li>
+                <p class="left_item">Производство:</p>
+                <p class="right_item">{{ movie_item.country }}</p>
+            </li>
+            <li>
+                <p class="left_item">Экран:</p>
+                <p class="right_item">{{ movie_item.screen_types }}</p>
+            </li>
+            <li>
+                <p class="left_item">В ролях:</p>
+                <p class="right_item">{{ movie_item.actors }}</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

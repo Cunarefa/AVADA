@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/afisha.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    {% for movie in afisha %}
+
+    <div class="col-2">
+        {% if movie.on_screen %}
+        <span>Уже в прокате</span>
+        {% else %}
+        <span class="unreleased">С {{ movie.premier|date:"j E" }}</span>
+        {% endif %}
+
+        <div class="card">
+            <img src="{{ movie.poster.url }}">
+            <div class="card-footer text-muted">
+                <a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary">Купить билет</button>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

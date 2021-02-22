@@ -1,0 +1,142 @@
+.errorlist{
+    color: red;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+body{
+    background: url(../photos/fon2.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-dark .navbar-text a, .navbar-dark .navbar-text a:focus, .navbar-dark .navbar-text a:hover {
+    color: #F0FFFF;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #FFF;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.55);
+    border-color: rgba(255,255,255,.55);
+}
+
+.phone{
+    text-align: center;
+}
+
+.menu{
+    float: right;
+    border-spacing: 0;
+    margin-top: 5px !important;
+}
+
+.table th, .table td{
+    padding: 0;
+    border: none;
+}
+
+tbody, td, tfoot, th, thead, tr{
+    border: none;
+}
+
+table.menu tr td a, table.menu tr td input {
+    display: block;
+    padding: 0 20px;
+    padding-top: 4px;
+    padding-bottom: 0;
+    height: 22px;
+    background: #3f3f3f;
+    color: #FFF;
+    -webkit-border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-decoration: none;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    text-shadow: 1px 1px #000;
+}
+
+.slider{
+    margin-top: 60px;
+}
+
+.carousel-inner{
+    max-height: 500px;
+    border: none;
+    background-color: #000;
+}
+
+.row{
+    --bs-gutter-x: 0;
+    background-color: #F5F5F5;
+}
+
+.col-3{
+    padding: 0 4px;
+}
+
+.card{
+    background-color: transparent;
+    border: none!important;
+    max-height: 440px;
+    height: 100%;
+}
+
+.card img{
+    max-width: 290px;
+    height: 370px;
+    margin-top: 8px;
+}
+
+.card-footer{
+    background-color: #F5F5F5;
+    padding-top: 8px;
+    padding: .5rem 0.2rem;
+}
+
+.text-muted{
+    color: #000!important;
+    text-decoration: underline;
+
+}
+
+.card-footer text-muted a{
+    color: #000;
+}
+
+button {
+    display: block;
+    margin: 5px 0 22px;
+}
+
+.btn-primary:hover{
+    background-color: #3CB371;
+}
+
+.btn-primary{
+    background-color: #32CD32;
+    border: none;
+}
+
+.register_form{
+    max-width: 300px;
+    margin: 70px auto;
+    background-color: #F5F5F5;
+}
