@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('movie/<str:slug>/', MovieView.as_view(), name='movie_detail'),
     path('afisha/', AfishaView.as_view(), name='afisha'),
+    path('cinema-all/', CinemaListView.as_view(), name='cinema_all'),
 ]
