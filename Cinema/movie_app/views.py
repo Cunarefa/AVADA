@@ -1,8 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DeleteView, View
-# from django.views.generic.base import View
+from django.views.generic import ListView, DeleteView, View, DetailView
 
 from .forms import UserRegisterForm, UserLoginForm
 from .models import Movie, Cinema
@@ -41,7 +40,7 @@ def user_logout(request):
 
 
 
-class Unreleased(View):
+class AllMovies(View):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.filter(on_screen=True)
         unreleased = Movie.objects.filter(on_screen=False).order_by('premier')[:4]
@@ -53,7 +52,7 @@ class Unreleased(View):
 
 
 
-class MovieView(DeleteView):
+class MovieView(DetailView):
     model = Movie
     template_name = 'movie_app/movie_detail.html'
     context_object_name = 'movie_item'
@@ -69,3 +68,10 @@ class CinemaListView(ListView):
     model = Cinema
     template_name = 'movie_app/cinema_list.html'
     context_object_name = 'cinema_list'
+
+
+class CinemaDetail(DetailView):
+    model = Cinema
+    template_name = 'movie_app/cinema_detail.html'
+    context_object_name = 'cinema_view'
+
