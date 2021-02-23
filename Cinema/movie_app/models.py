@@ -1,5 +1,7 @@
 from datetime import date
 
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
 from multiselectfield import MultiSelectField
@@ -15,7 +17,7 @@ class Movie(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name='Название')
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
     genre = models.ManyToManyField('Genre', verbose_name='Жанр', related_name='related_genres')
@@ -39,13 +41,41 @@ class Movie(models.Model):
         verbose_name_plural = 'Фильмы'
 
 
+class Cinema(models.Model):
+    name = models.CharField(max_length=55, verbose_name='Название')
+    slug = models.SlugField(unique=True, verbose_name='URL')
+    description = models.TextField(verbose_name='Описание')
+    top_banner = models.ImageField(upload_to='cinema_banners', verbose_name='Фото')
+    conditions = models.TextField(verbose_name='Условия', blank=True)
+    logo = models.ImageField(upload_to='cinema_logos', verbose_name='Логотип', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Кинотеатр'
+        verbose_name_plural = 'Кинотеатры'
+
+
+class Hall(models.Model):
+    name = models.CharField(max_length=30, verbose_name='Название')
+    slug = models.SlugField(unique=True)
+    description = models.TextField(verbose_name='Описание')
+    top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Фото')
+    scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема')
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Зал'
+        verbose_name_plural = 'Залы'
+
+
 class Gallery(models.Model):
-    image = models.ImageField(upload_to='gallery', blank=True)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='movie_images')
-    cinema = models.ForeignKey('Cinema', on_delete=models.CASCADE, related_name='cinema_images')
+    image = models.ImageField(upload_to='gallery', blank=True, null=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
 
     class Meta:
         verbose_name = 'Галерея'
+        verbose_name_plural = 'Галереи'
 
 
 class Genre(models.Model):
@@ -58,23 +88,6 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
-
-
-class Cinema(models.Model):
-    name = models.CharField(max_length=55, verbose_name='Название')
-    description = models.TextField(verbose_name='Описание')
-    conditions = models.TextField(verbose_name='Условия', blank=True)
-    logo = models.ImageField(upload_to='cinema_logos', verbose_name='Логотип')
-    # hall = models.ForeignKey()
-
-
-
-
-
-
-
-
-
 
 
 
