@@ -45,20 +45,22 @@ class Cinema(models.Model):
     name = models.CharField(max_length=55, verbose_name='Название')
     slug = models.SlugField(unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
-    top_banner = models.ImageField(upload_to='cinema_banners', verbose_name='Фото')
     conditions = models.TextField(verbose_name='Условия', blank=True)
     logo = models.ImageField(upload_to='cinema_logos', verbose_name='Логотип', blank=True, null=True)
+    top_banner = models.ImageField(upload_to='cinema_banners', verbose_name='Верхний баннер')
 
     class Meta:
         verbose_name = 'Кинотеатр'
         verbose_name_plural = 'Кинотеатры'
 
+    def get_absolute_url(self):
+        return reverse('cinema_item', kwargs={'slug': self.slug})
+
 
 class Hall(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
-    slug = models.SlugField(unique=True)
     description = models.TextField(verbose_name='Описание')
-    top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Фото')
+    top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Верхний баннер')
     scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема')
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 
@@ -88,6 +90,3 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
-
-
-
