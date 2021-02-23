@@ -5,7 +5,7 @@ from django.views.generic import ListView, DeleteView, View
 # from django.views.generic.base import View
 
 from .forms import UserRegisterForm, UserLoginForm
-from .models import Movie
+from .models import Movie, Cinema
 
 
 def register(request):
@@ -63,3 +63,9 @@ class AfishaView(ListView):
     model = Movie
     template_name = 'movie_app/afisha.html'
     context_object_name = 'afisha'
+
+
+class CinemaListView(ListView):
+    model = Cinema
+    template_name = 'movie_app/cinema_list.html'
+    context_object_name = 'cinema_list'
