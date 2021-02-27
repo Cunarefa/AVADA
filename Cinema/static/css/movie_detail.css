@@ -1,0 +1,62 @@
+body{
+    background-color: #000;
+    background-image: none;
+}
+
+.card-body{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+.card-body img{
+    max-width: 450px;
+    width: 100%;
+}
+h1{
+    color: #FF7F50;
+    padding: 10px 0;
+
+}
+.card-title{
+    text-align: center;
+}
+.media-body{
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+/* List of characteristics ++++++++++++++++++++++++ */
+
+p{
+    color: #fff;
+}
+ul{
+    padding-inline-start: 0;
+}
+.characteristics{
+    margin-top: 20px;
+    max-width: 360px;
+    border: 4px solid #FF6347;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+li{
+    display: flex;
+    justify-content: space-between;
+    text-align: end;
+}
+.left_item{
+    margin-left: 5px;
+}
+.right_item{
+    max-width: 236px;
+    margin-right: 5px;
+    color: #808080;
+}
+
+
+
+

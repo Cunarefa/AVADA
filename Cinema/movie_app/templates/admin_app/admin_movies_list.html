@@ -1,0 +1,63 @@
+{% extends 'base_admin.html' %}
+
+
+{% block content_header %}
+<div class="container">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="justify-content:space-between;">
+                {% block content_title %}
+                <div class="col-sm-6">
+                    <h1 class="m-0">Список фильмов в прокате</h1>
+                </div>
+                <a href="{% url 'add_movie' %}" class="btn btn-primary" style="text-align:right;">Добавить фильм</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    {% block content %}
+
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-3">
+            <div class="card">
+                <img class="img-fluid" src="{{ movie.poster.url }}">
+
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url 'update_movie' slug=movie.slug %}">{{ movie.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Список ожидаемых фильмов</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for movie in unreleased %}
+        <div class="col-3">
+            <div class="card">
+                <img class="img-fluid" src="{{ movie.poster.url }}">
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url 'update_movie' slug=movie.slug %}">{{ movie.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+

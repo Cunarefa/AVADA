@@ -11,4 +11,8 @@ urlpatterns = [
     path('afisha/', AfishaView.as_view(), name='afisha'),
     path('cinema-all/', CinemaListView.as_view(), name='cinema_all'),
     path('cinema/<str:slug>/', CinemaDetail.as_view(), name='cinema_item'),
+
+    # Админка ==========================
+
+    # path('create/', add_movie, name='create'),
 ]

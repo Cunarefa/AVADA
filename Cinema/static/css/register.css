@@ -1,3 +1,4 @@
+
 .errorlist{
     color: red;
 }
@@ -11,45 +12,40 @@ body{
     background: url(../photos/fon2.jpg) no-repeat center center fixed;
     background-size: cover;
 }
+
 h1, h2, h3, h4, h5, h6, a {
   margin:0; padding:0;
 }
-.avtorizovasya {
-  margin:0 auto;
-  max-width:500px;
+
+.form{
+    margin:0 auto;
+    max-width:500px;
+
 }
-.avto-vaslas {
+.enter_title {
   color:#fff;
   text-align:center;
   font-size:300%;
 }
-
-}
-.vasuged-kupalas {
-  border:.5px solid #fff;
-  background:#4facff;
-  border-radius:10px;
-  box-shadow:0px 0px 10px #000;
-}
-.vasuged-kupalas h3 {
-  text-align: left;
-  margin-left: 40px;
-  color: #FFF;
-  text-shadow: 0 1px 0 #4c4646;
-}
-.vasuged-kupalas {
+.form_inner {
+  background-color: transparent;
   box-sizing:border-box;
   padding-top:15px;
   padding-bottom:10%;
   margin:5% auto;
   text-align:center;
 }
-.avtorizovasya input[type="text"],
-.avtorizovasya input[type="password"],
-.avtorizovasya input[type="email"] {
+.username h3{
+  text-align: left;
+  margin-left: 40px;
+  color: #fff;
+  text-shadow: 0 1px 0 #4c4646;
+}
+.form-control {
+  height: 55px;
   max-width:400px;
   width: 80%;
-  line-height:3em;
+  line-height:none;
   font-family: 'Ubuntu', sans-serif;
   margin:1em 2em;
   border-radius:5px;
@@ -58,42 +54,23 @@ h1, h2, h3, h4, h5, h6, a {
   padding-left:10px;
 }
 
-.vasuged-kupalas input,
-.vasuged-kupalas button {
+.form_inner input[type="submit"] {
+  height:30px;
   width:100px;
   background:#fff;
   border:1px solid #f2f2f2;
   border-radius:20px;
   color: slategrey;
+  text-transform:uppercase;
   font-family: 'Ubuntu', sans-serif;
-  cursor:pointer;
 }
 
-.vasuged-kupalas button{
-    width:150px;
-}
 
-.naugs-palasug{
-  color:#f2f2f2;
-  margin-left:-70%;
-  cursor:pointer;
-  text-decoration:underline;
-}
-.vsamus-pugasd {
-  color:#E86850;
-  margin:20px 0px 20px -57%;
-  text-decoration:underline;
-  cursor:pointer;
-}
-.gasces-nomlaged {
-  color:#f2f2f2;
-  text-decoration:underline;
-  cursor:pointer;
-}
 
 /*Media Querie*/
+
 @media only screen and (min-width : 150px) and (max-width : 530px){
-  .vasuged-kupalas h3 {
+  .username h3 {
   text-align:center;
   margin:0;
   }

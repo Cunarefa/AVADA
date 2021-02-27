@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/cinema_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ cinema_view.name }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <section class="top_banner">
+        <img src="{{ cinema_view.top_banner.url }}">
+    </section>
+
+    <div class="row">
+        <div class="col-3">
+            <img src="{{ cinema_view.logo.url }}">
+        </div>
+        <div class="col-9">
+
+            <div class="header">
+                <div class="inline header_name">
+                    {{ cinema_view.name }}
+                </div>
+
+                <div class="inline logo">
+                    <img src="{{ cinema_view.logo.url }}" width="150">
+                </div>
+
+                <a href="" class="inline button">Расписание сеансов</a>
+            </div>
+
+            <div class="description">
+                {{ cinema_view.description }}
+            </div>
+
+            <h3 class="conditions_title">Условия</h3>
+
+            <div class="conditions">
+                <hr>
+                {{ cinema_view.conditions }}
+            </div>
+            <div class="gallery">
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

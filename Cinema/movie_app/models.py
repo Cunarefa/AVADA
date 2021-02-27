@@ -1,12 +1,11 @@
 from datetime import date
-
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
 from multiselectfield import MultiSelectField
-
 from embed_video.fields import EmbedVideoField
+from autoslug import AutoSlugField
 
 
 class Movie(models.Model):
@@ -17,7 +16,7 @@ class Movie(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name='Название')
-    slug = models.SlugField(unique=True, verbose_name='URL')
+    slug = AutoSlugField(populate_from='title', unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
     genre = models.ManyToManyField('Genre', verbose_name='Жанр', related_name='related_genres')

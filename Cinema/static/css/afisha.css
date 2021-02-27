@@ -1,0 +1,70 @@
+body{
+    height: 100%;
+    background-color: #000;
+    background-image: none;
+}
+
+a{
+    color: #fff;
+}
+
+.phone{
+    text-align: center;
+}
+
+.row{
+    --bs-gutter-x: 0;
+    background-color: transparent;
+    padding: 0 15px;
+}
+
+.col-2{
+    padding: 0 4px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.col-2 span{
+    color: #FF7F50;
+}
+
+.col-2 .unreleased{
+    color: #6495ED;
+}
+
+.card{
+    background-color: transparent;
+    border: none;
+    max-height: 320px;
+    height: 100%;
+    padding: 0 5px;
+}
+
+.card img{
+    max-width: 290px;
+    height: 250px;
+    margin-top: 8px;
+}
+
+.card-footer{
+    padding: .5rem 0.2rem;
+}
+
+.text-muted{
+    text-decoration: none;
+}
+
+button {
+    display: block;
+    margin: 5px 0 22px;
+}
+
+.btn-primary:hover{
+    background-color: #3CB371;
+}
+
+.btn-primary{
+    background-color: #32CD32;
+    border: none;
+}
+
