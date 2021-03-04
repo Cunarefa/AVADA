@@ -17,6 +17,7 @@ class Movie(models.Model):
 
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = AutoSlugField(populate_from='title', unique=True, verbose_name='URL')
+    # slug = models.SlugField(unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
     genre = models.ManyToManyField('Genre', verbose_name='Жанр', related_name='related_genres')
@@ -40,6 +41,11 @@ class Movie(models.Model):
         verbose_name_plural = 'Фильмы'
 
 
+class MovieGallery(models.Model):
+    image = models.ImageField(upload_to='movie_gallery', verbose_name='Фото', blank=True, null=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
 class Cinema(models.Model):
     name = models.CharField(max_length=55, verbose_name='Название')
     slug = models.SlugField(unique=True, verbose_name='URL')
@@ -56,6 +62,11 @@ class Cinema(models.Model):
         return reverse('cinema_item', kwargs={'slug': self.slug})
 
 
+class CinemaGallery(models.Model):
+    image = models.ImageField(upload_to='cinema_gallery', verbose_name='Фото', blank=True, null=True)
+    movie = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+
+
 class Hall(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
     description = models.TextField(verbose_name='Описание')
@@ -66,6 +77,11 @@ class Hall(models.Model):
     class Meta:
         verbose_name = 'Зал'
         verbose_name_plural = 'Залы'
+
+
+class HallGallery(models.Model):
+    image = models.ImageField(upload_to='hall_gallery', verbose_name='Фото', blank=True, null=True)
+    movie = models.ForeignKey(Hall, on_delete=models.CASCADE)
 
 
 class Gallery(models.Model):
@@ -89,3 +105,5 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
+
+
