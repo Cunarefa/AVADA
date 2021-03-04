@@ -15,7 +15,6 @@
             <div class="form-group col-md-6 mb-0">
                 {{ form.title|as_crispy_field }}
             </div>
-
         </div>
         {{ form.description|as_crispy_field }}
         {{ form.trailer|as_crispy_field }}
@@ -33,6 +32,16 @@
                 {{ form.premier|as_crispy_field }}
             </div>
         </div>
+
+        <div class="form-row">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                <div class="form-group col-md-3 mb-0">
+                    {{form.as_p}}
+                </div>
+                {% endfor %}
+        </div>
+
         <div class="form-row">
             <div class="form-group col-md-6 mb-0">
                 {{ form.year|as_crispy_field }}
@@ -46,7 +55,10 @@
         </div>
         {{ form.actors|as_crispy_field }}
         {{ form.genre|as_crispy_field }}
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="submit" class="btn btn-success">Сохранить</button>
+<!--        <input type="submit" name="Удалить" value="Удалить" class="btn btn-danger">-->
+        <a href="{% url 'delete_movie' movie.slug %}" class="btn btn-danger">Удалить</a>
+
     </form>
 
 </div>
