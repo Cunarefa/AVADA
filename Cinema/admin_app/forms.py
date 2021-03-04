@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.contenttypes.models import ContentType
+from django.forms.models import inlineformset_factory
 
-from movie_app.models import Movie
+from movie_app.models import Movie, Gallery, MovieGallery
 
 
 class AdminCreateMovieForm(forms.ModelForm):
@@ -8,15 +10,10 @@ class AdminCreateMovieForm(forms.ModelForm):
         model = Movie
         exclude = ['slug']
         widgets = {
-            'title': forms.TextInput(),
-            'slug': forms.TextInput(),
             'description': forms.Textarea(attrs={'rows': 5}),
-            'poster': forms.FileInput(),
-            'genre': forms.SelectMultiple(),
-            'premier': forms.DateInput(),
-            'on_screen': forms.CheckboxInput(),
-            'year': forms.NumberInput(),
-            'country': forms.TextInput(),
-            'actors': forms.TextInput(),
-            'age': forms.TextInput(),
         }
+
+
+GalleryFormset = inlineformset_factory(ContentType, Gallery, fields=['image'], extra=4)
+
+GalleryMovieFormset = inlineformset_factory(Movie, MovieGallery, fields=('image',), max_num=3)
