@@ -1,12 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
 from django.views.generic.base import View
 
-from admin_app.forms import AdminCreateMovieForm, GalleryFormset, GalleryMovieFormset
-from movie_app.models import Cinema, Movie, Gallery
+from admin_app.movie.forms import AdminCreateMovieForm, GalleryMovieFormset
+from movie_app.models import Movie
 
 
 def admin_app(request):
@@ -27,8 +27,8 @@ class AdminAllMoviesList(View):
 def create_movie(request):
     movie = Movie()
     if request.method == 'POST':
-        formset = GalleryMovieFormset(request.POST, request.FILES, instance=movie)
         form = AdminCreateMovieForm(request.POST, request.FILES, instance=movie)
+        formset = GalleryMovieFormset(request.POST, request.FILES, instance=movie)
         if form.is_valid() and formset.is_valid():
             form.save()
             formset.save()

@@ -14,6 +14,6 @@ class AdminCreateMovieForm(forms.ModelForm):
         }
 
 
-GalleryFormset = inlineformset_factory(ContentType, Gallery, fields=['image'], extra=4)
-
 GalleryMovieFormset = inlineformset_factory(Movie, MovieGallery, fields=('image',), max_num=3)
+
+# GalleryFormset = inlineformset_factory(ContentType, Gallery, fields=['image'], extra=4)
