@@ -1,4 +1,6 @@
 from datetime import date
+
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -6,6 +8,7 @@ from django.urls import reverse
 from multiselectfield import MultiSelectField
 from embed_video.fields import EmbedVideoField
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 
 
 class Movie(models.Model):
@@ -18,7 +21,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = AutoSlugField(populate_from='title', unique=True, verbose_name='URL')
     # slug = models.SlugField(unique=True, verbose_name='URL')
-    description = models.TextField(verbose_name='Описание')
+    description = RichTextUploadingField(verbose_name='Описание')
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
     genre = models.ManyToManyField('Genre', verbose_name='Жанр', related_name='related_genres')
     trailer = EmbedVideoField(blank=True, verbose_name='Трейлер', null=True)
@@ -48,8 +51,9 @@ class MovieGallery(models.Model):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=55, verbose_name='Название')
-    slug = models.SlugField(unique=True, verbose_name='URL')
-    description = models.TextField(verbose_name='Описание')
+    slug = AutoSlugField(populate_from='name', unique=True, verbose_name='URL')
+    # slug = models.SlugField(unique=True, verbose_name='URL')
+    description = RichTextUploadingField(verbose_name='Описание', blank=True)
     conditions = models.TextField(verbose_name='Условия', blank=True)
     logo = models.ImageField(upload_to='cinema_logos', verbose_name='Логотип', blank=True, null=True)
     top_banner = models.ImageField(upload_to='cinema_banners', verbose_name='Верхний баннер')
@@ -69,9 +73,9 @@ class CinemaGallery(models.Model):
 
 class Hall(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
-    description = models.TextField(verbose_name='Описание')
+    description = RichTextUploadingField(verbose_name='Описание', blank=True)
     top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Верхний баннер')
-    scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема')
+    scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема', blank=True)
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 
     class Meta:
