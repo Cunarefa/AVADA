@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, View, DetailView, CreateView, UpdateView
 
-from .forms import UserRegisterForm, UserLoginForm, AdminCreateMovieForm, CreateMovieForm
+from .forms import UserRegisterForm, UserLoginForm
 from .models import Movie, Cinema
 
 
@@ -40,7 +40,6 @@ def user_logout(request):
     return redirect('login')
 
 
-
 class AllMovies(View):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.filter(on_screen=True)
@@ -50,7 +49,6 @@ class AllMovies(View):
             'unreleased': unreleased,
         }
         return render(request, 'movie_app/main_page.html', context=context)
-
 
 
 class MovieView(DetailView):
@@ -75,39 +73,3 @@ class CinemaDetail(DetailView):
     model = Cinema
     template_name = 'movie_app/cinema_detail.html'
     context_object_name = 'cinema_view'
-
-
-# Админка ++++++++++++++++++
-
-# def admin_app(request):
-#     return render(request, 'base_admin.html')
-#
-#
-# class AdminMoviesListView(View):
-#     def get(self, request, *args, **kwargs):
-#         movies = Movie.objects.filter(on_screen=True)
-#         unreleased = Movie.objects.filter(on_screen=False).order_by('premier')[:4]
-#         context = {
-#             'movies': movies,
-#             'unreleased': unreleased,
-#         }
-#         return render(request, 'admin_app/admin_movies_list.html', context=context)
-
-
-# class AdminCreateMovie(CreateView):
-#     form_class = CreateMovieForm
-#     template_name = 'movie_app/create_movie.html'
-#     success_url = reverse_lazy('main')
-
-
-# def add_movie(request):
-#     if request.method == 'POST':
-#         form = CreateMovieForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             movies = form.save(commit=False)
-#             return redirect(movies)
-#     else:
-#         form = CreateMovieForm()
-#     return render(request, 'movie_app/create_movie.html', {'form': form})
-
-
