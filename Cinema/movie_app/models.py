@@ -8,7 +8,6 @@ from django.urls import reverse
 from multiselectfield import MultiSelectField
 from embed_video.fields import EmbedVideoField
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 
 
 class Movie(models.Model):
@@ -68,7 +67,7 @@ class Cinema(models.Model):
 
 class CinemaGallery(models.Model):
     image = models.ImageField(upload_to='cinema_gallery', verbose_name='Фото', blank=True, null=True)
-    movie = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 
 
 class Hall(models.Model):
@@ -85,18 +84,7 @@ class Hall(models.Model):
 
 class HallGallery(models.Model):
     image = models.ImageField(upload_to='hall_gallery', verbose_name='Фото', blank=True, null=True)
-    movie = models.ForeignKey(Hall, on_delete=models.CASCADE)
-
-
-class Gallery(models.Model):
-    image = models.ImageField(upload_to='gallery', blank=True, null=True)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey()
-
-    class Meta:
-        verbose_name = 'Галерея'
-        verbose_name_plural = 'Галереи'
+    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
 
 
 class Genre(models.Model):
@@ -111,3 +99,12 @@ class Genre(models.Model):
         verbose_name_plural = 'Жанры'
 
 
+class Gallery(models.Model):
+    image = models.ImageField(upload_to='gallery', blank=True, null=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
+
+    class Meta:
+        verbose_name = 'Галерея'
+        verbose_name_plural = 'Галереи'
