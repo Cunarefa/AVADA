@@ -20,11 +20,12 @@ class AdminAllMoviesList(View):
         context = {
             'movies': movies,
             'unreleased': unreleased,
+            'title': 'Список фильмов'
         }
         return render(request, 'admin_app/admin_movies_list.html', context=context)
 
 
-def create_movie(request):
+def admin_create_movie(request):
     movie = Movie()
     if request.method == 'POST':
         form = AdminCreateMovieForm(request.POST, request.FILES, instance=movie)
@@ -36,16 +37,23 @@ def create_movie(request):
     else:
         formset = GalleryMovieFormset()
         form = AdminCreateMovieForm()
-    return render(request, 'admin_app/admin_create_movie.html', {'formset': formset, 'form': form})
+
+    context = {
+        'formset': formset,
+        'form': form,
+        'title': 'Добавиьт фильм'
+    }
+    return render(request, 'admin_app/admin_create_movie.html', context=context)
 
 
 class AdminUpdateMovie(UpdateView):
     model = Movie
     form_class = AdminCreateMovieForm
-    template_name = 'admin_app/admin_update_movie.html'
+    template_name = 'admin_app/admin_create_movie.html'
 
     def get_context_data(self, **kwargs):
         context = super(AdminUpdateMovie, self).get_context_data(**kwargs)
+        context['title'] = 'Обновление фильма'
         if self.request.POST:
             context['form'] = AdminCreateMovieForm(self.request.POST, self.request.FILES, instance=self.object)
             context['formset'] = GalleryMovieFormset(self.request.POST, self.request.FILES, instance=self.object)
@@ -54,9 +62,15 @@ class AdminUpdateMovie(UpdateView):
             context['formset'] = GalleryMovieFormset(instance=self.object)
         return context
 
-    def form_valid(self, request):
-        form = AdminCreateMovieForm(self.request.POST, self.request.FILES, instance=self.object)
-        formset = GalleryMovieFormset(self.request.POST, self.request.FILES, instance=self.object)
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = AdminCreateMovieForm(request.POST, request.FILES, instance=self.object)
+        formset = GalleryMovieFormset(request.POST, request.FILES, instance=self.object)
+        if form.is_valid() and formset.is_valid():
+            return self.form_valid(request, form, formset)
+        return self.form_invalid(form)
+
+    def form_valid(self, request, form, formset):
         if 'Удалить' in self.request.POST:
             movie_delete = Movie.objects.get(slug=self.kwargs['slug'])
             movie_delete.delete()
@@ -64,7 +78,6 @@ class AdminUpdateMovie(UpdateView):
             self.object = form.save()
             formset.instance = self.object
             formset.save()
-            self.object = request.save()
         return HttpResponseRedirect(reverse_lazy('admin_movies'))
 
 
