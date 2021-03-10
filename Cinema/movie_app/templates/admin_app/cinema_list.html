@@ -1,0 +1,44 @@
+{% extends 'base_admin.html' %}
+
+{% block head_title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content_header %}
+<div class="container">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="justify-content:space-between;">
+                {% block content_title %}
+                <div class="col-sm-6">
+                    <h1 class="m-0">Кинотеатры</h1>
+                </div>
+                <a href="{% url 'create_cinema' %}" class="btn btn-primary" style="text-align:right;">Добавить кинотеатр</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    {% block content %}
+
+    <div class="row">
+        {% for cinema in cinemas %}
+        <div class="col-3">
+            <div class="card" style="height:180px">
+                <img class="img-fluid" src="{{ cinema.top_banner.url }}">
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url 'update_cinema' slug=cinema.slug %}">{{ cinema.name }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+
+
