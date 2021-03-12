@@ -92,4 +92,3 @@ class UpdateCinemaAdmin(UpdateView):
 class DeleteCinemaAdmin(DeleteView):
     model = Cinema
     success_url = reverse_lazy('cinemas')
-    template_name = 'admin_app/delete.html'
