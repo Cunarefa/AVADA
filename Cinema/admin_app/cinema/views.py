@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from admin_app.cinema.forms import CinemaAdminForm, CinemaFormset
+from admin_app.cinema.forms import CinemaAdminForm, CinemaFormset, CinemaFormsetHall
 from movie_app.models import Cinema
 
 
@@ -56,24 +56,27 @@ class UpdateCinemaAdmin(UpdateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(UpdateCinemaAdmin, self).get_context_data(**kwargs)
-        ctx['title'] = 'Обновить кинотеатр'
+        ctx['title'] = Cinema.objects.get(slug=self.kwargs['slug'])
         if self.request.POST:
             ctx['form'] = CinemaAdminForm(self.request.POST, self.request.FILES, instance=self.object)
             ctx['formset'] = CinemaFormset(self.request.POST, self.request.FILES, instance=self.object)
+            ctx['formset_hall'] = CinemaFormsetHall(self.request.POST, instance=self.object)
         else:
             ctx['form'] = CinemaAdminForm(instance=self.object)
             ctx['formset'] = CinemaFormset(instance=self.object)
+            ctx['formset_hall'] = CinemaFormsetHall(instance=self.object)
         return ctx
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = CinemaAdminForm(request.POST, request.FILES, instance=self.object)
         formset = CinemaFormset(request.POST, request.FILES, instance=self.object)
-        if form.is_valid() and formset.is_valid():
-            return self.form_valid(request, form, formset)
+        formset_hall = CinemaFormsetHall(self.request.POST, instance=self.object)
+        if form.is_valid() and formset.is_valid() and formset_hall.is_valid:
+            return self.form_valid(request, form, formset, formset_hall)
         return self.form_invalid(form)
 
-    def form_valid(self, request, form, formset):
+    def form_valid(self, request, form, formset, formset_hall):
         if 'Удалить' in self.request.POST:
             movie_delete = Cinema.objects.get(slug=self.kwargs['slug'])
             movie_delete.delete()
@@ -81,6 +84,8 @@ class UpdateCinemaAdmin(UpdateView):
             self.object = form.save()
             formset.instance = self.object
             formset.save()
+            formset_hall.instance = self.object
+            formset_hall.save()
         return HttpResponseRedirect(reverse_lazy('cinemas'))
 
 
