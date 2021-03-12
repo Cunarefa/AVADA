@@ -72,51 +72,29 @@
                     data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="№" class="nav-link">
+                        <a href="{% url 'admin_movies' %}" class="nav-link">
                             <i class="nav-icon fas fa-film"></i>
                             <p>
                                 Фильмы
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{% url 'admin_movies' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Все фильмы</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'cinemas' %}" class="nav-link">
                             <i class="nav-icon fas fa-play"></i>
                             <p>
                                 Кинотеатры
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{% url 'cinemas' %}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Все кинотеатры</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Карточка кинотеатра</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Карточка зала</p>
-                                </a>
-                            </li>
-                        </ul>
+<!--                        <ul class="nav nav-treeview">-->
+<!--
+                                <li class="nav-item">-->
+<!--                                <a href="{% url 'create_hall' %}" class="nav-link">-->
+<!--                                    <i class="far fa-circle nav-icon"></i>-->
+<!--                                    <p>Карточка зала</p>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
