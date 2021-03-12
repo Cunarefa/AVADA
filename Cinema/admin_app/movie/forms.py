@@ -9,6 +9,7 @@ class AdminCreateMovieForm(forms.ModelForm):
         model = Movie
         exclude = ['slug']
         widgets = {
+            'premier': forms.DateInput(attrs={'id': 'datepicker'}),
             'description': CKEditorWidget(),
         }
 
