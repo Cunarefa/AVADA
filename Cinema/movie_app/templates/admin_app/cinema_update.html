@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block head_title %}
-    {{ title }}
+{{ title }}
 {% endblock %}
 
 {% block content_header %} {% endblock %}
@@ -37,9 +37,26 @@
             </div>
             {% endfor %}
         </div>
+        <div class="mb-4">
+            <h3 class="mt-4" style="text-align:center">Список залов:</h3>
+            <ul class="list-group">
+                {{ formset_hall.management_form }}
+                {% for form in formset_hall.forms %}
 
-        <button type="submit" class="btn btn-primary">Добавить кинотеатр</button>
-        <a href="{% url 'delete_movie' cinema.slug %}" class="btn btn-danger">Удалить</a>
+                {% if form.name.value %}
+                <li class="list-group-item">
+                    <a href="{% url 'hall_detail' pk=form.id.value %}">{{ form.name.value }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{% url 'create_hall' %}" class="btn btn-warning">Добавить зал</a>
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        <input type="submit" name="Удалить" value="Удалить" class="btn btn-danger">
+<!--        <a href="{% url 'delete_cinema' cinema.slug %}" class="btn btn-danger">Удалить кинотеатр</a>-->
     </form>
 </div>
 {% endblock %}

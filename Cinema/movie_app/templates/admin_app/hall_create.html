@@ -1,0 +1,51 @@
+{% extends 'base_admin.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+{% block content_header %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.name|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-10 mb-0 mt-4">
+                {{ form.description|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row mt-5">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.scheme|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+                {{ form.top_banner|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row mt-4">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.cinema|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ formset.management_form }}
+            {% for form in inlines %}
+            <div class="form-group col-md-1 mb-0">
+                {{ form }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Создать зал</button>
+    </form>
+</div>
+{% endblock %}

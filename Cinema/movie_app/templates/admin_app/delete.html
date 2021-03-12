@@ -1,0 +1,12 @@
+<form method="POST" action="{% url 'delete_cinema' cinema.slug %}">
+   {% csrf_token %}
+    <input type="submit" value="DELETE">
+</form>
+
+<div class="form-row">
+            {% for form in inlines %}
+            <div class="form-group col-md-1 mb-0">
+                {{ form }}
+            </div>
+            {% endfor %}
+        </div>
