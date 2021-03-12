@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 from ckeditor.widgets import CKEditorWidget
-from movie_app.models import Cinema, CinemaGallery
+from movie_app.models import Cinema, CinemaGallery, Hall
 
 
 class CinemaAdminForm(forms.ModelForm):
@@ -15,3 +15,5 @@ class CinemaAdminForm(forms.ModelForm):
 
 
 CinemaFormset = inlineformset_factory(Cinema, CinemaGallery, fields=('image',), max_num=3)
+
+CinemaFormsetHall = inlineformset_factory(Cinema, Hall, fields=('name',))
