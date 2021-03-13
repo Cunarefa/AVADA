@@ -52,7 +52,6 @@ class UpdateCinemaAdmin(UpdateView):
     model = Cinema
     form_class = CinemaAdminForm
     template_name = 'admin_app/cinema_update.html'
-    success_url = reverse_lazy('cinemas')
 
     def get_context_data(self, **kwargs):
         ctx = super(UpdateCinemaAdmin, self).get_context_data(**kwargs)
