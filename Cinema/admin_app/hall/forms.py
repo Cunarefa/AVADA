@@ -15,4 +15,4 @@ class HallForm(forms.ModelForm):
         }
 
 
-HallGalleryFormset = inlineformset_factory(Hall, HallGallery, fields=('image',))
+HallGalleryFormset = inlineformset_factory(Hall, HallGallery, fields=('image',), max_num=3)
