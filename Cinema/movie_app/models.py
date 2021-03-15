@@ -7,7 +7,6 @@ from django.db import models
 from django.urls import reverse
 from multiselectfield import MultiSelectField
 from embed_video.fields import EmbedVideoField
-from autoslug import AutoSlugField
 from pytils.translit import slugify
 
 
@@ -19,7 +18,6 @@ class Movie(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name='Название')
-    # slug = AutoSlugField(populate_from='title', unique=True, verbose_name='URL')
     slug = models.SlugField(unique=True, verbose_name='URL')
     description = RichTextUploadingField(verbose_name='Описание')
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
@@ -55,27 +53,25 @@ class MovieGallery(models.Model):
 
 class Cinema(models.Model):
     name = models.CharField(max_length=55, verbose_name='Название')
-    # slug = AutoSlugField(populate_from='name', unique=True, verbose_name='URL')
     slug = models.SlugField(unique=True, verbose_name='URL')
     description = RichTextUploadingField(verbose_name='Описание', blank=True)
     conditions = models.TextField(verbose_name='Условия', blank=True)
     logo = models.ImageField(upload_to='cinema_logos', verbose_name='Логотип', blank=True, null=True)
     top_banner = models.ImageField(upload_to='cinema_banners', verbose_name='Верхний баннер')
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.name
-
     def get_absolute_url(self):
-        return reverse('cinema_item', kwargs={'slug': self.slug})
+        return reverse('update_cinema', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Кинотеатр'
         verbose_name_plural = 'Кинотеатры'
-
 
 
 class CinemaGallery(models.Model):
@@ -90,11 +86,11 @@ class Hall(models.Model):
     scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема', blank=True)
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, verbose_name='Кинотеатр')
 
-    def get_absolute_url(self):
-        return reverse('hall_detail', kwargs={'pk': self.pk})
-
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('hall_detail', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Зал'
