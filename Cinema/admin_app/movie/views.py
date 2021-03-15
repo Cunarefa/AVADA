@@ -64,8 +64,8 @@ class AdminUpdateMovie(UpdateView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = AdminCreateMovieForm(request.POST, request.FILES, instance=self.object)
-        formset = GalleryMovieFormset(request.POST, request.FILES, instance=self.object)
+        form = AdminCreateMovieForm(self.request.POST, self.request.FILES, instance=self.object)
+        formset = GalleryMovieFormset(self.request.POST, self.request.FILES, instance=self.object)
         if form.is_valid() and formset.is_valid():
             return self.form_valid(request, form, formset)
         return self.form_invalid(form)
