@@ -35,19 +35,10 @@
             </div>
             <div class="form-group col-md-4 mb-0">
                 {{ form.premier|as_crispy_field }}
-<!--                <div class="form-group">-->
-<!--                    <label>{{ form.premier.label}}</label>-->
-<!--                    <div class="input-group date" id="reservationdate" data-target-input="nearest">-->
-<!--                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>-->
-<!--                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">-->
-<!--                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <i class="fa fa-calendar"></i>
             </div>
         </div>
         <div class="form-row">
-            {% csrf_token %}
             {{ formset.management_form }}
             {% for form in formset.forms %}
             <div class="form-group col-md-3 mb-0">

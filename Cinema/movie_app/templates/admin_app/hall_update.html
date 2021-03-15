@@ -38,9 +38,9 @@
         </div>
          <div class="form-row">
                 {{ formset.management_form }}
-                {% for form in formset %}
+                {% for form in inlines %}
                 <div class="form-group col-md-3 mb-0">
-                    {{form.as_p}}
+                    {{ form }}
                 </div>
                 {% endfor %}
         </div>

@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block head_title %}
-{{ title }}
+К-тр {{ title }}
 {% endblock %}
 
 {% block content_header %} {% endblock %}
@@ -44,8 +44,14 @@
                 {% for form in formset_hall.forms %}
 
                 {% if form.name.value %}
-                <li class="list-group-item">
-                    <a href="{% url 'hall_detail' pk=form.id.value %}">{{ form.name.value }}</a>
+                <li class="list-group-item" style="display:flex; justify-content:space-around;">
+                    <span>{{ form.name.value }}</span>
+                    <div>
+                        <a href="{% url 'hall_detail' pk=form.id.value %}" class="mr-2" style="color:lime;"><i
+                                class="nav-icon fas fa-edit (alias)"></i></a>
+                        <a href="{% url 'delete_hall' pk=form.id.value %}" style="color:red"><i
+                                class="nav-icon fas fa-trash"></i></a>
+                    </div>
                 </li>
                 {% endif %}
                 {% endfor %}
@@ -55,8 +61,7 @@
         <a href="{% url 'create_hall' %}" class="btn btn-warning">Добавить зал</a>
 
         <button type="submit" class="btn btn-primary">Сохранить изменения</button>
-        <input type="submit" name="Удалить" value="Удалить" class="btn btn-danger">
-<!--        <a href="{% url 'delete_cinema' cinema.slug %}" class="btn btn-danger">Удалить кинотеатр</a>-->
+        <input type="submit" name="Удалить" value="Удалить кинотеатр" class="btn btn-danger">
     </form>
 </div>
 {% endblock %}
