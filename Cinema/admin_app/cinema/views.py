@@ -1,15 +1,14 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from extra_views import InlineFormSetFactory, UpdateWithInlinesView, CreateWithInlinesView
 
 from admin_app.cinema.forms import CinemaAdminForm, CinemaFormset, CinemaFormsetHall
-from movie_app.models import Cinema, CinemaGallery
+from movie_app.models import Cinema
 
 
 class AdminCinemaListView(ListView):
     model = Cinema
-    template_name = 'admin_app/cinema_list.html'
+    template_name = 'cinema/cinema_list.html'
     context_object_name = 'cinemas'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -20,7 +19,7 @@ class AdminCinemaListView(ListView):
 
 class CreateCinemaAdmin(CreateView):
     form_class = CinemaAdminForm
-    template_name = 'admin_app/create_cinema.html'
+    template_name = 'cinema/create_cinema.html'
     success_url = reverse_lazy('cinemas')
 
     def get_context_data(self, **kwargs):
@@ -52,7 +51,7 @@ class CreateCinemaAdmin(CreateView):
 class UpdateCinemaAdmin(UpdateView):
     model = Cinema
     form_class = CinemaAdminForm
-    template_name = 'admin_app/cinema_update.html'
+    template_name = 'cinema/cinema_update.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(UpdateCinemaAdmin, self).get_context_data(**kwargs)
