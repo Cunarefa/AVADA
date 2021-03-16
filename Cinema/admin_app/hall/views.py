@@ -17,7 +17,7 @@ class CreateHallView(CreateWithInlinesView):
     model = Hall
     inlines = [GalleryInline]
     fields = '__all__'
-    template_name = 'admin_app/hall_create.html'
+    template_name = 'hall/hall_create.html'
     extra_context = {'title': 'Создать новый зал'}
     success_url = reverse_lazy('cinemas')
 
@@ -51,7 +51,7 @@ class UpdateHallView(UpdateWithInlinesView):
     model = Hall
     inlines = [GalleryInline]
     fields = '__all__'
-    template_name = 'admin_app/hall_update.html'
+    template_name = 'hall/hall_update.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(UpdateHallView, self).get_context_data(**kwargs)
