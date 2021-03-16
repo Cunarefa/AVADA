@@ -22,7 +22,7 @@ class AdminAllMoviesList(View):
             'unreleased': unreleased,
             'title': 'Список фильмов'
         }
-        return render(request, 'admin_app/admin_movies_list.html', context=context)
+        return render(request, 'movie/admin_movies_list.html', context=context)
 
 
 def admin_create_movie(request):
@@ -43,7 +43,7 @@ def admin_create_movie(request):
         'form': form,
         'title': 'Добавиьт фильм'
     }
-    return render(request, 'admin_app/admin_create_movie.html', context=context)
+    return render(request, 'movie/admin_create_movie.html', context=context)
 
 
 class AdminUpdateMovie(UpdateView):
