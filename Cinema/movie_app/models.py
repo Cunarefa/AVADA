@@ -10,6 +10,17 @@ from embed_video.fields import EmbedVideoField
 from pytils.translit import slugify
 
 
+class Gallery(models.Model):
+    image = models.ImageField(upload_to='gallery', blank=True, null=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
+
+    class Meta:
+        verbose_name = 'Галерея'
+        verbose_name_plural = 'Галереи'
+
+
 class Movie(models.Model):
     TYPES_OF_SCREEN = (
         ('3D', '3D'),
@@ -19,7 +30,7 @@ class Movie(models.Model):
 
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.SlugField(unique=True, verbose_name='URL')
-    description = RichTextUploadingField(verbose_name='Описание')
+    description = RichTextUploadingField(verbose_name='Описание', blank=True)
     poster = models.ImageField(upload_to='posters/%Y/%m/%d/', verbose_name='Постер')
     genre = models.ManyToManyField('Genre', verbose_name='Жанр', related_name='related_genres')
     trailer = EmbedVideoField(blank=True, verbose_name='Трейлер', null=True)
@@ -67,7 +78,7 @@ class Cinema(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('update_cinema', kwargs={'slug': self.slug})
+        return reverse('cinema_item', kwargs={'slug': self.slug})
 
     class Meta:
         verbose_name = 'Кинотеатр'
@@ -82,15 +93,15 @@ class CinemaGallery(models.Model):
 class Hall(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название')
     description = RichTextUploadingField(verbose_name='Описание', blank=True)
-    top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Верхний баннер')
+    top_banner = models.ImageField(upload_to='hall_banners', verbose_name='Верхний баннер', blank=True)
     scheme = models.ImageField(upload_to='hall_scheme', verbose_name='Схема', blank=True)
-    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, verbose_name='Кинотеатр')
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, verbose_name='Кинотеатр', related_name='cinema_halls')
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('hall_detail', kwargs={'pk': self.pk})
+        return reverse('hall_item', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'Зал'
@@ -114,12 +125,16 @@ class Genre(models.Model):
         verbose_name_plural = 'Жанры'
 
 
-class Gallery(models.Model):
-    image = models.ImageField(upload_to='gallery', blank=True, null=True)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey()
+class News(models.Model):
+    title = models.CharField(max_length=55, verbose_name='Название новости')
+    description = RichTextUploadingField(verbose_name='Описание', blank=True)
+    main_photo = models.ImageField(upload_to='news_photo', verbose_name='Главное фото', blank=True)
+    created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
-    class Meta:
-        verbose_name = 'Галерея'
-        verbose_name_plural = 'Галереи'
+    def get_absolute_url(self):
+        return reverse('news_item', kwargs={'pk': self.pk})
+
+
+class NewsGallery(models.Model):
+    image = models.ImageField(upload_to='news_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
