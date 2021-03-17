@@ -1,0 +1,44 @@
+{% extends 'base_admin.html' %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+
+<div class="container">
+{% block content_header %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="justify-content:space-between;">
+                {% block content_title %}
+                <div class="col-sm-6">
+                    <h1 class="m-0">Новости</h1>
+                </div>
+                <a href="{% url 'create_news' %}" class="btn btn-primary" style="text-align:right;">Добавить новость</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    {% block content %}
+
+    <div class="row">
+        {% for new in news %}
+        <div class="col-3">
+            <div class="card" style="height:180px">
+                <img class="img-fluid" src="{{ new.main_photo.url }}">
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url 'update_cinema' slug=cinema.slug %}">{{ new.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+
+
