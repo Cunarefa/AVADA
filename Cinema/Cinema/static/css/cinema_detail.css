@@ -18,7 +18,7 @@
     display: inline-block;
 }
 .header_name{
-    color: #fff;
+    color: #000;
     font-size: 20px;
     margin-top: 0;
 }
@@ -38,7 +38,7 @@
 }
 
 .description{
-    color: #fff;
+    color: #000;
     padding-bottom: 15px;
 }
 .conditions_title{

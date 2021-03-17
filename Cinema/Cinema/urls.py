@@ -20,8 +20,13 @@ from django.urls import path, include
 
 urlpatterns = [
     path('dj-admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('movie_app.urls')),
-    path('admin/', include('admin_app.urls')),
+    path('admin/', include('admin_app.movie.urls')),
+    path('admin/', include('admin_app.cinema.urls')),
+    path('admin/', include('admin_app.hall.urls')),
+    path('admin/', include('admin_app.news.urls')),
+    path('admin/', include('admin_app.action.urls')),
 ]
 
 if settings.DEBUG:

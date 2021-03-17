@@ -16,7 +16,6 @@ from dotenv import read_dotenv
 read_dotenv()
 read_dotenv(override=True)
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,10 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # movie_app
+    'movie_app.apps.MovieAppConfig',
     'embed_video',
     'multiselectfield',
     'crispy_forms',
-    'movie_app.apps.MovieAppConfig',
+    'ckeditor',
+    'ckeditor_uploader',
+    'extra_views',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height': 150,
+        'width': 'auto',
+    },
+}
