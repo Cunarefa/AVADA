@@ -49,7 +49,7 @@ def admin_create_movie(request):
 class AdminUpdateMovie(UpdateView):
     model = Movie
     form_class = AdminCreateMovieForm
-    template_name = 'admin_app/admin_update_movie.html'
+    template_name = 'movie/admin_update_movie.html'
 
     def get_context_data(self, **kwargs):
         context = super(AdminUpdateMovie, self).get_context_data(**kwargs)
