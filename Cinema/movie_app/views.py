@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, View, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, View, DetailView
 
 from .forms import UserRegisterForm, UserLoginForm
-from .models import Movie, Cinema
+from .models import Movie, Cinema, Hall, News, Action, Contacts
 
 
 def register(request):
@@ -56,20 +56,75 @@ class MovieView(DetailView):
     template_name = 'movie_app/movie_detail.html'
     context_object_name = 'movie_item'
 
+    def get_context_data(self, **kwargs):
+        ctx = super(MovieView, self).get_context_data(**kwargs)
+        ctx['title'] = Movie.objects.get(slug=self.kwargs['slug'])
+        return ctx
+
 
 class AfishaView(ListView):
     model = Movie
     template_name = 'movie_app/afisha.html'
     context_object_name = 'afisha'
+    extra_context = {'title': 'Афиша'}
 
 
 class CinemaListView(ListView):
     model = Cinema
     template_name = 'movie_app/cinema_list.html'
     context_object_name = 'cinema_list'
+    extra_context = {'title': 'Кинотеатры'}
 
 
 class CinemaDetail(DetailView):
     model = Cinema
     template_name = 'movie_app/cinema_detail.html'
     context_object_name = 'cinema_view'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(CinemaDetail, self).get_context_data(**kwargs)
+        ctx['title'] = Cinema.objects.get(slug=self.kwargs['slug'])
+        return ctx
+
+
+class HallDetail(DetailView):
+    model = Hall
+    template_name = 'movie_app/hall_detail.html'
+    context_object_name = 'hall_view'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(HallDetail, self).get_context_data(**kwargs)
+        ctx['title'] = Hall.objects.get(pk=self.kwargs['pk'])
+        return ctx
+
+
+class NewsList(ListView):
+    model = News
+    template_name = 'movie_app/news_list.html'
+    context_object_name = 'news'
+    extra_context = {'title': 'Новости'}
+
+
+class ActionsList(ListView):
+    model = Action
+    template_name = 'movie_app/actions_list.html'
+    context_object_name = 'actions'
+    extra_context = {'title': 'Акции'}
+
+
+class ActionDetail(DetailView):
+    model = Action
+    template_name = 'movie_app/action_detail.html'
+    context_object_name = 'action_view'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ActionDetail, self).get_context_data(**kwargs)
+        ctx['title'] = Action.objects.get(pk=self.kwargs['pk'])
+        return ctx
+
+
+class ContactList(ListView):
+    model = Contacts
+    template_name = 'movie_app/contacts.html'
+    context_object_name = 'contacts'
+    extra_context = {'title': 'Контакты кинотеатров'}
