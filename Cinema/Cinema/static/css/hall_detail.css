@@ -1,0 +1,40 @@
+body {
+    background-color: #1A3044;
+}
+.page_body {
+    margin-top: 1px;
+}
+
+/* +++++++++++++++++++++ Top Photo ++++++++++++ */
+.top_photo {
+    max-width: 100%;
+}
+.top_photo img {
+    width: 100%;
+    max-height: 500px;
+}
+
+/* +++++++++++++++++++++++++++ Hall Body +++++++++++++++++++ */
+.hall_body {
+    display: flex;
+    margin-top: 20px;
+    padding: 0 15px;
+}
+
+/* +++++++++++++++++++++++++++ Main Content +++++++++++++++++++ */
+.hall_title {
+    text-align: center;
+    color: #fff;
+}
+.hall_text {
+    text-align: center;
+    color: #C0C0C0;
+}
+
+.carousel-item img {
+    height: 400px;
+}
+
+
+
+

@@ -52,10 +52,6 @@ class Movie(models.Model):
     def get_absolute_url(self):
         return reverse('movie_detail', kwargs={'slug': self.slug})
 
-    class Meta:
-        verbose_name = 'Фильм'
-        verbose_name_plural = 'Фильмы'
-
 
 class MovieGallery(models.Model):
     image = models.ImageField(upload_to='movie_gallery', verbose_name='Фото', blank=True, null=True)
@@ -80,10 +76,6 @@ class Cinema(models.Model):
     def get_absolute_url(self):
         return reverse('cinema_item', kwargs={'slug': self.slug})
 
-    class Meta:
-        verbose_name = 'Кинотеатр'
-        verbose_name_plural = 'Кинотеатры'
-
 
 class CinemaGallery(models.Model):
     image = models.ImageField(upload_to='cinema_gallery', verbose_name='Фото', blank=True, null=True)
@@ -103,14 +95,10 @@ class Hall(models.Model):
     def get_absolute_url(self):
         return reverse('hall_item', kwargs={'pk': self.pk})
 
-    class Meta:
-        verbose_name = 'Зал'
-        verbose_name_plural = 'Залы'
-
 
 class HallGallery(models.Model):
     image = models.ImageField(upload_to='hall_gallery', verbose_name='Фото', blank=True, null=True)
-    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
+    hall = models.ForeignKey(Hall, on_delete=models.CASCADE, related_name='halls_photo')
 
 
 class Genre(models.Model):
@@ -120,21 +108,85 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        verbose_name = 'Жанр'
-        verbose_name_plural = 'Жанры'
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
-class News(models.Model):
-    title = models.CharField(max_length=55, verbose_name='Название новости')
+class Pages(models.Model):
+    title = models.CharField(max_length=55, verbose_name='Название')
     description = RichTextUploadingField(verbose_name='Описание', blank=True)
-    main_photo = models.ImageField(upload_to='news_photo', verbose_name='Главное фото', blank=True)
+    main_photo = models.ImageField(upload_to='pages_photo', verbose_name='Главное фото', blank=True)
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата создания')
 
-    def get_absolute_url(self):
-        return reverse('news_item', kwargs={'pk': self.pk})
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
+
+
+class News(Pages):
+    pass
 
 
 class NewsGallery(models.Model):
     image = models.ImageField(upload_to='news_gallery', verbose_name='Фото', blank=True, null=True)
     news = models.ForeignKey(News, on_delete=models.CASCADE)
+
+
+class Action(Pages):
+    def get_absolute_url(self):
+        return reverse('action_item', kwargs={'pk': self.pk})
+
+
+class ActionGallery(models.Model):
+    image = models.ImageField(upload_to='action_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(Action, on_delete=models.CASCADE)
+
+
+class Cafe(Pages):
+    def get_absolute_url(self):
+        pass
+
+
+class CafeGallery(models.Model):
+    image = models.ImageField(upload_to='cafe_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+
+
+class VIPHall(Pages):
+    def get_absolute_url(self):
+        pass
+
+
+class VIPHallGallery(models.Model):
+    image = models.ImageField(upload_to='vipHall_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(VIPHall, on_delete=models.CASCADE)
+
+
+class ChildrenRoom(Pages):
+    def get_absolute_url(self):
+        pass
+
+
+class ChildrenRoomGallery(models.Model):
+    image = models.ImageField(upload_to='childRoom_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(ChildrenRoom, on_delete=models.CASCADE)
+
+
+class Advertise(Pages):
+    def get_absolute_url(self):
+        pass
+
+
+class AdvertiseGallery(models.Model):
+    image = models.ImageField(upload_to='advertise_gallery', verbose_name='Фото', blank=True, null=True)
+    news = models.ForeignKey(Advertise, on_delete=models.CASCADE)
+
+
+class Contacts(models.Model):
+    cinema_name = models.CharField(max_length=55, verbose_name='Название кинотеатра')
+    address = models.CharField(max_length=155, verbose_name='Адрес')
+    map_cords = RichTextUploadingField(verbose_name='Ссылка на карту')
+    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, verbose_name='Кинотеатр', related_name='cinema_contacts')

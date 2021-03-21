@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/action_view.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="act_page">
+        <div class="title">
+            <h3>{{ action_view.title }}</h3>
+        </div>
+        <div class="act_text">
+            <div class="image">
+                <img src="{{ action_view.main_photo.url }}">
+            </div>
+            {{ action_view.description|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}

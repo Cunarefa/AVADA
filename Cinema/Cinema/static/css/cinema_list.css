@@ -1,0 +1,38 @@
+body {
+    background-color: #1A3044;
+}
+
+/* +++++++++++++++++++++++++++ Page Container +++++++++++++++++++ */
+.page_container {
+    margin-top: 20px;
+    padding: 0 15px;
+    display: flex;
+}
+
+/* +++++++++++++++++++++++++++ Main Content +++++++++++++++++++ */
+.title {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
+.card_content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card {
+    max-height: 300px;
+}
+.card img{
+    max-height: 300px;
+}
+.card-footer {
+    text-align: center;
+}
+.card-footer a {
+    font-size: 22px;
+    color: #fff;
+}
+.card-footer a:hover {
+    color: blue;
+}

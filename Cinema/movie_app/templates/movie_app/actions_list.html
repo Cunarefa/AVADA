@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/news_list.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <img src="../static/photos/action.jpg" class="fullscreen">
+</div>
+<div class="news">
+    <div class="col-9">
+        <div class="top_title">
+            <h2>Наши акции</h2>
+        </div>
+        <div class="cinema_items">
+            {% for action in actions %}
+            <div class="col-4">
+                <div class="card">
+                    <img src="{{ action.main_photo.url }}" style="height:280px">
+                    <div class="card-footer text-muted">
+                        <a class="act_title" href="{{ action.get_absolute_url }}" style="color:#0CC754;">{{ action.title }}</a>
+                    </div>
+                    <div class="date">
+                        {{ action.created_at }}
+                    </div>
+                    <div class="description">
+                        {{ action.description|truncatewords:30|safe }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-3">
+        ducbicub
+    </div>
+</div>
+
+{% endblock %}
