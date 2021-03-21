@@ -11,8 +11,9 @@ urlpatterns = [
     path('afisha/', AfishaView.as_view(), name='afisha'),
     path('cinema-all/', CinemaListView.as_view(), name='cinema_all'),
     path('cinema/<str:slug>/', CinemaDetail.as_view(), name='cinema_item'),
-
-    # Админка ==========================
-
-    # path('create/', add_movie, name='create'),
+    path('hall/<int:pk>/', HallDetail.as_view(), name='hall_item'),
+    path('news/', NewsList.as_view(), name='news_list'),
+    path('actions/', ActionsList.as_view(), name='action_list'),
+    path('action/<int:pk>/detail/', ActionDetail.as_view(), name='action_item'),
+    path('сontacts/', ContactList.as_view(), name='cinema_contacts'),
 ]
