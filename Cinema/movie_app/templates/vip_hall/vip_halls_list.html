@@ -1,0 +1,44 @@
+{% extends 'base_admin.html' %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+
+{% block content_header %}
+<div class="container">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="justify-content:space-between;">
+                {% block content_title %}
+                <div class="col-sm-6">
+                    <h1 class="m-0">Vip-залы</h1>
+                </div>
+                <a href="{% url 'create_vip' %}" class="btn btn-primary" style="text-align:right;">Добавить Vip-зал</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    {% block content %}
+
+    <div class="row">
+        {% for vip in vip_halls %}
+        <div class="col-3">
+            <div class="card" style="height:180px">
+                <img class="img-fluid" src="{{ vip.main_photo.url }}" style="height:180px">
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url 'vip_detail' pk=vip.id %}">{{ vip.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
+
+
+

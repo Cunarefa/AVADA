@@ -1,0 +1,47 @@
+body {
+    background-color: #1A3044;
+}
+.fullscreen {
+    width: 100%;
+}
+.news {
+    padding: 15px;
+}
+.top_title{
+    text-align: center;
+}
+h2 {
+    color: #fff;
+    margin-bottom: 30px;
+}
+.cinema_items {
+    display: flex;
+    justify-content: space-between;
+}
+.card {
+    margin: 0 4px;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+.card-footer {
+    color: #0000FF;
+    padding: 7px 0;
+}
+.text-muted{
+    text-decoration: underline;
+}
+.text-muted span {
+    color: #0CC754;
+}
+.date{
+    color: #D6FFDB;
+}
+.description {
+    color: #DCDCDC;
+    line-height: 1.5;
+    font-size: 14px;
+    margin: 25px 0 15px;
+}
+.description p {
+    margin: 0;
+}

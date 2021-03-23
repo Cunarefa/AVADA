@@ -57,13 +57,11 @@ body{
     background-color: transparent;
     border: none;
     max-height: 440px;
-    height: 100%;
 }
 
 .card img{
     max-width: 290px;
     height: 370px;
-    margin-top: 8px;
 }
 
 .card-footer{

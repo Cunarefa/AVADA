@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, View, DetailView
 
 from .forms import UserRegisterForm, UserLoginForm
-from .models import Movie, Cinema, Hall, News, Action, Contacts
+from .models import Movie, Cinema, Hall, News, Action, Contacts, Cafe, VIPHall
 
 
 def register(request):
@@ -128,3 +128,17 @@ class ContactList(ListView):
     template_name = 'movie_app/contacts.html'
     context_object_name = 'contacts'
     extra_context = {'title': 'Контакты кинотеатров'}
+
+
+class CafeView(ListView):
+    model = Cafe
+    template_name = 'movie_app/cafe_view.html'
+    context_object_name = 'cafe'
+    extra_context = {'title': 'Кафе'}
+
+
+class VipHallView(ListView):
+    model = VIPHall
+    template_name = 'movie_app/vip_hall_view.html'
+    context_object_name = 'vip_hall'
+    extra_context = {'title': 'Vip-зал'}

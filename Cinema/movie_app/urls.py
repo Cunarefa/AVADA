@@ -16,4 +16,5 @@ urlpatterns = [
     path('actions/', ActionsList.as_view(), name='action_list'),
     path('action/<int:pk>/detail/', ActionDetail.as_view(), name='action_item'),
     path('сontacts/', ContactList.as_view(), name='cinema_contacts'),
+    path('cafe/', CafeView.as_view(), name='cafe_view'),
 ]
