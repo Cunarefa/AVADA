@@ -1,9 +1,9 @@
 from django.urls import path
 
-from admin_app.vip_hall.views import AdminVipHallListView, CreateVipHallAdmin, DetailVipHallAdmin
+from admin_app.kids_room.views import AdminKidsRoomListView, CreateKidsRoomAdmin, DetailKidsRoomAdmin
 
 urlpatterns = [
-    path('vip_halls/', AdminVipHallListView.as_view(), name='vip_halls_list'),
-    path('vip_hall/create/', CreateVipHallAdmin.as_view(), name='create_vip'),
-    path('vip_hall/<int:pk>/detail/', DetailVipHallAdmin.as_view(), name='vip_detail'),
+    path('kids_rooms/', AdminKidsRoomListView.as_view(), name='kids_rooms_list'),
+    path('kids_room/create/', CreateKidsRoomAdmin.as_view(), name='create_kids_room'),
+    path('kids_room/<int:pk>/detail/', DetailKidsRoomAdmin.as_view(), name='kids_room_detail'),
 ]
