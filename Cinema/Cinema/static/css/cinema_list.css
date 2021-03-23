@@ -22,9 +22,11 @@ body {
 }
 .card {
     max-height: 300px;
+    margin-bottom: 60px;
 }
 .card img{
     max-height: 300px;
+    width: 400px;
 }
 .card-footer {
     text-align: center;

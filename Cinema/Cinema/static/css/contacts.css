@@ -1,0 +1,36 @@
+body {
+    background-color: #1A3044;
+}
+.page_container {
+    padding: 15px;
+}
+.col-9 {
+    color: #fff;
+}
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ====================================================== */
+
+iframe {
+    width: 500px;
+    height: 350px;
+}
+.title_address {
+    display: flex;
+    justify-content: space-around;
+    margin-top:  20px;
+}
+.cinema_address {
+    width: 400px;
+}
+.photo_map {
+    display: flex;
+}
+.photo_map img {
+    width: 400px;
+    height:350px;
+    margin-right: 20px;
+}

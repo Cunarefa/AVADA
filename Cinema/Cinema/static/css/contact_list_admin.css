@@ -1,0 +1,19 @@
+.card_in {
+    display: flex;
+    max-width: 1000px;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: 	#F0FFFF;
+}
+.card-title {
+    margin-bottom: 5px;
+}
+a {
+    padding-top: 20px;
+}
+.trash i {
+    font-size: 25px;
+    padding: 25px;
+    color: #808080;
+}

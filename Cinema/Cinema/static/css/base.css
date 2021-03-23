@@ -1,16 +1,13 @@
-
 *{
     box-sizing: border-box;
-}
-
-a{
-    text-decoration: none;
-    color: #000;
 }
 
 body{
     background: #000;
     margin: 0px;
+}
+.navbar {
+    padding-bottom: .2rem;
 }
 
 .container{
@@ -24,7 +21,7 @@ body{
     margin-top: 5px !important;
 }
 .table{
-    margin-bottom:2rem;
+    margin-bottom:0;
 }
 
 .table th, .table td{
@@ -59,5 +56,11 @@ table.menu tr td a, table.menu tr td input {
     font-weight: 700;
     text-shadow: 1px 1px #000;
 }
-
+.dropdown-menu{
+    background: #3f3f3f;
+}
+table.menu tr td ul li a.dropdown-item{
+    border: none;
+    color: #fff;
+}
 /*=======================================================*/
