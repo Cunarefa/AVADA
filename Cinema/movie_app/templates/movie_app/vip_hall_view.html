@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/cafe.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+{% for vip in vip_hall %}
+<div>
+    <img src="{{ vip.main_photo.url }}" class="fullscreen">
+</div>
+<div class="container">
+
+    <div class="cafe">
+        <div class="top_title">
+            <h2>{{ vip.title }}</h2>
+        </div>
+
+        <div class="cafe_body">
+            <div class="cafe_description">
+                {{ vip.description|safe }}
+            </div>
+        </div>
+    </div>
+
+    <div class="vip_hall_gallery">
+        <!--                Carousel-->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                {% for photo in vip.vip_photos.all %}
+                <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                    <img src="{{ photo.image.url }}" class="d-block w-100" alt="...">
+                </div>
+                {% endfor %}
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <!--                Carousel-->
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

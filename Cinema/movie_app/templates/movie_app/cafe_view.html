@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/cafe.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <img src="../static/photos/rest.jpg" class="fullscreen">
+</div>
+<div class="container">
+
+    <div class="cafe">
+        {% for cafe in cafe %}
+        <div class="top_title">
+            <h2>{{ cafe.title }}</h2>
+        </div>
+
+        <div class="cafe_body">
+            <div class="cafe_description">
+                {{ cafe.description|safe }}
+            </div>
+            <div class="gallery">
+                {% for photo in cafe.cafe_photos.all %}
+                <img src="{{ photo.image.url }}">
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

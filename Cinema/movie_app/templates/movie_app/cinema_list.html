@@ -2,37 +2,42 @@
 {% load static %}
 
 {% block head_css %}
-<link rel="stylesheet" href="{% static 'css/all_cinema.css' %}">
+<link rel="stylesheet" href="{% static 'css/cinema_list.css' %}">
 {% endblock %}
 
 {% block title %}
-{{ cinema_list.name }} | {{ block.super }}
+{{ title }} | {{ block.super }}
 {% endblock %}
 
 
 {% block content %}
-<div class="cinema">
-    <div class="col-9">
-        <div class="top_title">
-            <h3>Наши кинотеатры</h3>
-        </div>
-        <div class="cinema_items">
+
+<div class="cinema_body">
+    <div class="top_photo">
+        <img src="../static/photos/action.jpg">
+    </div>
+
+    <div class="page_container">
+        <div class="main_content col-9">
+            <div class="title">
+                <h2>Наши кинотеатры</h2>
+            </div>
+
+            <div class="card_content">
             {% for cinema in cinema_list %}
-            <div class="col-5">
                 <div class="card">
                     <img src="{{ cinema.top_banner.url }}">
                     <div class="card-footer text-muted">
                         <a href="{{ cinema.get_absolute_url }}">{{ cinema.name }}</a>
                     </div>
                 </div>
-            </div>
             {% endfor %}
+            </div>
+        </div>
+
+        <div class="left_side col-3">
+            LEFT SIDE
         </div>
     </div>
-    <div class="col-3">
-        ducbicub
-    </div>
 </div>
-
-
 {% endblock %}

@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+
+{% block head_link %}
+<link rel="stylesheet" href="{% static 'css/contact_list_admin.css' %}">
+{% endblock %}
+
+
+{% block content_header %}
+<div class="container">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" style="justify-content:space-between;">
+                {% block content_title %}
+                <div class="col-sm-6">
+                    <h1 class="m-0">Данные кинотеатров:</h1>
+                </div>
+                <a href="{% url 'create_contact' %}" class="btn btn-primary" style="text-align:right;">Добавить
+                    кинотеатр</a>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% endblock %}
+
+
+    {% block content %}
+
+    {% for contact in contacts %}
+    <div class="card_in">
+        <div class="card-body">
+            <h5 class="card-title">
+                <span><strong>{{ contact.cinema.name }}</strong></span>
+            </h5>
+            <address class="card-text">
+                {{ contact.address }}
+            </address>
+        </div>
+        <div>
+            <a href="{% url 'delete_contact' contact.id %}" class="trash"><i
+                    class="nav-icon fas fa-trash"></i></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

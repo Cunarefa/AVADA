@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/hall_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_body">
+    <div class="top_photo">
+        <img src="{{ hall_view.top_banner.url }}">
+    </div>
+
+    <div class="hall_body">
+        <div class="side_menu col-3">
+            <h3>SIDE MENU</h3>
+        </div>
+
+        <div class="main_content col-9">
+            <div class="hall_title">
+                <h2>{{ hall_view.name }}</h2>
+            </div>
+            <div class="hall_text">
+                {{ hall_view.description|safe }}
+            </div>
+
+            <div class="hall_gallery">
+                <!--                Carousel-->
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        {% for photo in hall_view.halls_photo.all %}
+                        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                            <img src="{{ photo.image.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <!--                Carousel-->
+            </div>
+
+            <div class="hall_map">
+                <h3>Hall MAP</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

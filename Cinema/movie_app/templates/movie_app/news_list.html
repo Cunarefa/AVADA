@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/news_list.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <img src="../static/photos/mortal.jpg" class="fullscreen">
+</div>
+
+<div class="news">
+    <div class="col-9">
+        <div class="top_title">
+            <h2>Новости</h2>
+        </div>
+
+        <div class="cinema_items">
+            {% for new in news %}
+            <div class="col-4">
+                <div class="card">
+                    <img src="{{ new.main_photo.url }}">
+                    <div class="card-footer text-muted">
+                        <span>{{ new.title }}</span>
+                    </div>
+                    <div class="date">
+                        {{ new.created_at }}
+                    </div>
+                    <div class="description">
+                        {{ new.description|safe }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-3">
+        ducbicub
+    </div>
+</div>
+
+{% endblock %}

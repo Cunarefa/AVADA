@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base_admin.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+К-тр {{ title }}
+{% endblock %}
+
+{% block content_header %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.title|as_crispy_field }}
+            </div>
+        </div>
+        {{ form.description|as_crispy_field|safe }}
+        {{ form.main_photo|as_crispy_field }}
+
+        <div class="form-row">
+            {{ formset.management_form }}
+            {% for form in inlines %}
+            <div class="form-group col-md-4 mb-0">
+                {{ form }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        <input type="submit" name="Удалить" value="Удалить новость" class="btn btn-danger">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base_admin.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{{ title }}
+{% endblock %}
+
+{% block content_header %} {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+
+        <div class="form-row mt-4">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.cinema|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.address|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+                {{ form.map_ref|as_crispy_field|safe }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Добавить кинотеатр</button>
+
+    </form>
+</div>
+
+{% endblock %}

@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="contacts_body">
+    <div class="top_photo">
+        <img src="../static/photos/action.jpg">
+    </div>
+
+    <div class="page_container">
+        <div class="col-9">
+            <div class="title">
+                <h1>Контакты</h1>
+            </div>
+
+            {% for contact in contacts %}
+            <hr>
+            <div class="card_container">
+                <div class="title_address">
+                    <div class="cinema_name">
+                        <h4>{{ contact.cinema.name }}</h4>
+                    </div>
+                    <div class="cinema_address">
+                        <address>{{ contact.address }}</address>
+                    </div>
+                </div>
+                <div class="photo_map">
+                    <img src="{{ contact.cinema.top_banner.url }}">
+                    <div class="cinema_map">
+                        {{ contact.map_ref|safe }}
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+
+            <div class="col-3">
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block script %}
+    <script>
+      }
+      function initMap() {
+        var cords = { lat: contact.lat, lng: contact.lng};
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 16,
+          center: cords,
+        });
+        const marker = new google.maps.Marker({
+          position: cords,
+          map: map,
+        });
+      }
+
+
+    </script>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBMKf_L08NWsOkGodK-nT42uI6PRyDCYs&callback=initMap&libraries=&v=weekly"
+            async
+    ></script>
+    {% endblock %}

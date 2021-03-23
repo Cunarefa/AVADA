@@ -5,8 +5,8 @@
 {% endblock %}
 
 
-<div class="container">
 {% block content_header %}
+<div class="container">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2" style="justify-content:space-between;">
@@ -28,10 +28,10 @@
         {% for new in news %}
         <div class="col-3">
             <div class="card" style="height:180px">
-                <img class="img-fluid" src="{{ new.main_photo.url }}">
+                <img class="img-fluid" src="{{ new.main_photo.url }}" style="height:180px; width:150">
             </div>
             <div class="card-footer text-muted">
-                <a href="{% url 'update_cinema' slug=cinema.slug %}">{{ new.title }}</a>
+                <a href="{% url 'detail_news' pk=new.id %}">{{ new.title }}</a>
             </div>
         </div>
         {% endfor %}
