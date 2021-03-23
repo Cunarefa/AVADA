@@ -27,6 +27,11 @@ urlpatterns = [
     path('admin/', include('admin_app.hall.urls')),
     path('admin/', include('admin_app.news.urls')),
     path('admin/', include('admin_app.action.urls')),
+    path('admin/', include('admin_app.contacts.urls')),
+    path('admin/', include('admin_app.cafe.urls')),
+    path('admin/', include('admin_app.vip_hall.urls')),
+    path('admin/', include('admin_app.kids_room.urls')),
+    path('admin/', include('admin_app.advertise.urls')),
 ]
 
 if settings.DEBUG:
