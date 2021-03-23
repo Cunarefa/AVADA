@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <!--Datepicker-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+
+    {% block head_link %} {% endblock %}
+
     <style>
          .container {
             padding: 10px 13.5px;
@@ -35,7 +41,10 @@
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <!--        <a href="index3.html" class="nav-link">Home</a>-->
-                <a href="{% url 'admin' %}" class="nav-link">Home</a>
+                <a href="{% url 'admin' %}" class="nav-link">Main page</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'main' %}" class="nav-link">Main Site</a>
             </li>
         </ul>
 
@@ -86,49 +95,22 @@
                                 Кинотеатры
                             </p>
                         </a>
-<!--                        <ul class="nav nav-treeview">-->
-<!--
-                                <li class="nav-item">-->
-<!--                                <a href="{% url 'create_hall' %}" class="nav-link">-->
-<!--                                    <i class="far fa-circle nav-icon"></i>-->
-<!--                                    <p>Карточка зала</p>-->
-<!--                                </a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'news' %}" class="nav-link">
                             <i class="nav-icon fas fa-rss-square"></i>
                             <p>
                                 Новости
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Страница новости</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{% url 'actions' %}" class="nav-link">
                             <i class="nav-icon fas fa-star"></i>
                             <p>
                                 Акции
-                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Страница акции</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -140,43 +122,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Главная страница</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>О кинотеатре</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a href="{% url 'cafe_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Кафе - Бар</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a href="{% url 'vip_halls_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Vip - зал</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a href="{% url 'advertise_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Реклама</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a href="{% url 'kids_rooms_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Детская комната</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                                <a href="{% url 'contacts_list' %}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Контакты</p>
                                 </a>
@@ -271,5 +241,17 @@
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<!--Datepicker-->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+      $('#datepicker').datepicker();
+    });
+
+
+
+</script>
+
 </body>
 </html>

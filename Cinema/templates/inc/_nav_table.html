@@ -1,41 +1,53 @@
-<div class="table">
-    <div class="container">
-        <table class="menu">
-            <tbody>
-            <tr>
-                <td class="item">
-                    <a href="{% url 'afisha' %}">
-                        <span class="name">Афиша</span>
-                    </a>
-                </td>
-                <td class="item">
-                    <a href="/new/">
-                        <span class="name">Расписание</span>
-                    </a>
-                </td>
-                <td class="item">
-                    <a href="">
-                        <span class="name">Скоро</span>
-                    </a>
-                </td>
-                <td class="item">
-                    <a href="{% url 'cinema_all' %}">
-                        <span class="name">Кинотеатры</span>
-                    </a>
-                </td>
-                <td class="item">
-                    <a href="/serialy/">
-                        <span class="name">Акции</span>
-                    </a>
-                </td>
-                <td class="item">
-                    <a href="/doramy/">
-                        <span class="name">О кинотеатре</span>
-                    </a>
-                </td>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="table">
+        <div class="container">
+            <table class="menu">
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="{% url 'afisha' %}">
+                            <span>Афиша</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/new/">
+                            <span>Расписание</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="">
+                            <span>Скоро</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'cinema_all' %}">
+                            <span>Кинотеатры</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'action_list' %}">
+                            <span>Акции</span>
+                        </a>
+                    </td>
+                    <td class="dropdown">
+                        <a href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>О кинотеатре</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'news_list' %}">Новости</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cafe_view' %}">Кафе</a></li>
+                            <li><a class="dropdown-item" href="{% url 'vip_hall_view' %}">Vip-зал</a></li>
+                            <li><a class="dropdown-item" href="{% url 'kids_room' %}">Детская комната</a></li>
+                            <li><a class="dropdown-item" href="{% url 'advertise' %}">Реклама</a></li>
+                            <li><a class="dropdown-item" href="#">Мобильное прил</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cinema_contacts' %}">Контакты</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-            </tr>
-            </tbody>
-        </table>
+        </div>
     </div>
-</div>
+</nav>
