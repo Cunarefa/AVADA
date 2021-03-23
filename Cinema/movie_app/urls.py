@@ -17,4 +17,7 @@ urlpatterns = [
     path('action/<int:pk>/detail/', ActionDetail.as_view(), name='action_item'),
     path('сontacts/', ContactList.as_view(), name='cinema_contacts'),
     path('cafe/', CafeView.as_view(), name='cafe_view'),
+    path('vip-hall/', VipHallView.as_view(), name='vip_hall_view'),
+    path('kids-room/', KidsRoomView.as_view(), name='kids_room'),
+    path('advertise/', AdvertiseView.as_view(), name='advertise'),
 ]
