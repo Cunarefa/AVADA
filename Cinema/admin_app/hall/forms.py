@@ -1,8 +1,7 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
-from django.forms import inlineformset_factory
 
-from movie_app.models import Hall, HallGallery
+from movie_app.models import Hall
 
 
 class HallForm(forms.ModelForm):
@@ -13,6 +12,3 @@ class HallForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': CKEditorWidget(),
         }
-
-
-HallGalleryFormset = inlineformset_factory(Hall, HallGallery, fields=('image',), max_num=3)
