@@ -21,6 +21,8 @@
         <div class="col-9">
             <div class="title">
                 <h1>Контакты</h1>
+                <div id="map" style="width:400px; height:400px; border:1px solid #000;"></div>
+
             </div>
 
             {% for contact in contacts %}
@@ -37,7 +39,8 @@
                 <div class="photo_map">
                     <img src="{{ contact.cinema.top_banner.url }}">
                     <div class="cinema_map">
-                        {{ contact.map_ref|safe }}
+                        <!--                        {{ contact.map_ref|safe }}-->
+<!--                        <div id="map" style="width:400px, height:400px;"></div>-->
                     </div>
                 </div>
 
@@ -50,12 +53,18 @@
         </div>
     </div>
     {% endblock %}
+</div>
 
-    {% block script %}
-    <script>
+{% block script %}
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBMKf_L08NWsOkGodK-nT42uI6PRyDCYs&callback=initMap&libraries=&v=weekly"
+        async
+></script>
+
+<script>
       }
       function initMap() {
-        var cords = { lat: contact.lat, lng: contact.lng};
+        var cords = { lat: -25.344, lng: 131.036 };
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 16,
           center: cords,
@@ -66,11 +75,7 @@
         });
       }
 
+</script>
 
-    </script>
 
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBMKf_L08NWsOkGodK-nT42uI6PRyDCYs&callback=initMap&libraries=&v=weekly"
-            async
-    ></script>
-    {% endblock %}
+{% endblock %}

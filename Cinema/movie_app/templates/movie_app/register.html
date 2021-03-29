@@ -7,21 +7,13 @@
 {% endblock %}
 
 {% block title %}
-Регистрация | {{ block.super }}
+Регистрация :: {{ block.super }}
 {% endblock %}
-
 
 {% block nav_table %}{% endblock %}
 
-{% block content %}
-{% if errors %}
-<ul>
-    {% for error in errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 
+{% block content %}
 
 <div class="form">
     <div class="enter_title">
@@ -29,10 +21,6 @@
     </div>
     <form method="post" class="form_inner">
         {% csrf_token %}
-
-        <div class="username">
-            <h3>{{ form.username|as_crispy_field }}</h3>
-        </div>
 
         <div class="username">
             <h3>{{ form.email|as_crispy_field }}</h3>
@@ -46,11 +34,8 @@
             <h3>{{ form.password2|as_crispy_field }}</h3>
         </div>
 
-        <input type="submit" value="Sign in">
+        <input type="submit" value="Зарегистрироваться">
     </form>
 </div>
 
-
 {% endblock %}
-
-

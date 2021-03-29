@@ -19,7 +19,6 @@
             <div class="form-group col-md-6 mb-0">
                 {{ form.title|as_crispy_field }}
             </div>
-
         </div>
         {{ form.description|as_crispy_field }}
         {{ form.trailer|as_crispy_field }}
@@ -41,7 +40,7 @@
             {{ formset.management_form }}
             {% for form in formset.forms %}
             <div class="form-group col-md-3 mb-0">
-                {{form.image|as_crispy_field }}
+                {{ form.image|as_crispy_field }}
             </div>
             {% endfor %}
         </div>
