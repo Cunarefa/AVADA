@@ -1,7 +1,3 @@
-body{
-    background: url(../photos/fon2.jpg) no-repeat center center fixed;
-    background-size: cover;
-}
 
 .errorlist{
     color: red;
@@ -10,6 +6,11 @@ body{
 a{
     text-decoration: none;
     color: #000;
+}
+
+body{
+    background: url(../photos/fon2.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 h1, h2, h3, h4, h5, h6, a {
@@ -47,14 +48,15 @@ h1, h2, h3, h4, h5, h6, a {
   line-height:none;
   font-family: 'Ubuntu', sans-serif;
   margin:1em 2em;
-  border-radius:15px;
+  border-radius:5px;
   border:2px solid #f2f2f2;
   outline:none;
   padding-left:10px;
 }
 
 .form_inner input[type="submit"] {
-  height:40px;
+  height:30px;
+  width:100px;
   background:#fff;
   border:1px solid #f2f2f2;
   border-radius:20px;
