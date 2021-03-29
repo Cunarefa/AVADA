@@ -1,19 +1,24 @@
+import re
+
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+
+from movie_app.models import User
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput())
-    email = forms.EmailField(label='Email', widget=forms.EmailInput())
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Подтвердите пароль', widget=forms.PasswordInput())
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={"class": 'form-control'}))
+    password2 = forms.CharField(label='Подтверждение пароля',
+                                widget=forms.PasswordInput(attrs={"class": 'form-control'}))
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2']
 
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={"placeholder": "Username"}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={"placeholder": "Password"}))
+    username = forms.EmailField(label='E-mail', widget=forms.EmailInput())
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
+
+
+
